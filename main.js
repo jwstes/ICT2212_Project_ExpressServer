@@ -5,11 +5,21 @@ const fs = require('fs');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const serveIndex = require('serve-index');
+const https = require('https');
+
 
 
 const tools = require('./lib/tools');
 
 const app = express();
+
+const sslOptions = {
+    key: fs.readFileSync('/var/www/server.key'),
+    cert: fs.readFileSync('/var/www/server.cert')
+};
+
+
+
 const port = 80;
 
 app.use(session({
@@ -163,6 +173,14 @@ app.get('/:pl', async (req, res) =>{
     }
 })
 
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Example app listening on port ${port}`)
-})
+
+const httpsServer = https.createServer(sslOptions, app);
+
+
+// app.listen(port, '0.0.0.0', () => {
+//     console.log(`Example app listening on port ${port}`)
+// })
+
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+});
