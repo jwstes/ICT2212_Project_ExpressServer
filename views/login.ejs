@@ -1,0 +1,49 @@
+
+<input type="hidden" value="<%-sessionID%>"/>
+
+<h3>Welcome To Our Super Secure Website!</h3>
+<p>This website is secured using:</p>
+<ul>
+    <li>AES-256-CBC</li>
+    <li>PBKDF2 with SHA-256, 1000 iterations</li>
+</ul>
+<p>Made in <code>ICT2212</code> by <code>group -21-</code></p>
+<p>Members Including Gabriel, Shawn, SL, Brandon, Wei Xin, Foo Zhan Yong</p>
+<p>
+    This website has most of its code obfuscated using various methods. It's not meant for you to read and deobfuscate, so please don't try to do so.
+    If you're not convinced, here are some of the methods we employed in our obfuscation:
+    <ul>
+        <li>Base64 & RC4 String Array Encoding</li>
+        <li>Dead Code Injection</li>
+        <li>Domain Lock</li>
+        <li>Numbers 2 Expressions</li>
+        <li>Object Keys Transformation</li>
+    </ul>
+</p>
+<p><b>There are in total <code>2 ways</code> for you to bypass this login.</b></p>
+<div class="row">
+    <div class="loginForm">
+        <div class=card>
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" id="loginBtn"> Login </button>
+                    <label id="errorMsg"></label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var alpha = '<%-alpha%>';
+</script>
