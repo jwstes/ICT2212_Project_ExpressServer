@@ -74,6 +74,7 @@ app.get('/login', async (req, res) => {
     var sessionID = await tools.randomString();
     req.session['sessionID'] = sessionID;
     req.session['checkpointReached'] = false;
+    req.session['allowEntryToken'] = "LOL";
 
     var alpha = await tools.generateRandomString();
 
@@ -181,6 +182,6 @@ const httpsServer = https.createServer(sslOptions, app);
 //     console.log(`Example app listening on port ${port}`)
 // })
 
-httpsServer.listen(443, () => {
+httpsServer.listen(443, '0.0.0.0', () => {
     console.log('HTTPS Server running on port 443');
 });
