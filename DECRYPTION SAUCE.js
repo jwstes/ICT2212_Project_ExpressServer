@@ -9,7 +9,7 @@
     const encoder = new TextEncoder();
     const password = "ICT2212";
     const salt = encoder.encode("fixed_salt");
-    const iv = encoder.encode("fixed_iv_1234567");
+    const iv = encoder.encode("0000000000000000");
 
     const baseKey = await window.crypto.subtle.importKey(
         "raw",

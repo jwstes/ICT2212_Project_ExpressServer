@@ -58,8 +58,9 @@ const conditionalStaticMiddleware = (basePath) => {
 
 
 app.use('/static', conditionalStaticMiddleware(path.join(__dirname, 'site')));
+app.use('/zzon', serveIndex('hidden'));
+app.use('/zzon', express.static('hidden'));
 
-  
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({
   extended: true
@@ -121,7 +122,7 @@ app.post('/getToken', async (req, res) => {
         if(headers['_sid'] == req.session['sessionID']){
             var bearerToken = await tools.randomString();
 
-            res.cookie('_token', bearerToken, { 
+            res.cookie('_token', bearerToken, {
                 httpOnly: false,
                 secure: false,
                 sameSite: 'Strict',
@@ -148,7 +149,7 @@ app.post('/:pl', async (req, res) => {
         if(pl.replace('_0x', '') == req.session['token']){
             var allowEntryToken = await tools.randomString();
             req.session['allowEntryToken'] = allowEntryToken;
-            
+
             res.status(200).send({"status" : 200, "FLAG_MAGNUS" : allowEntryToken});
         }
         else{
@@ -163,7 +164,7 @@ app.post('/:pl', async (req, res) => {
 
 app.get('/:pl', async (req, res) =>{
     var pl = req.params['pl'];
-    
+
     if(req.session['allowEntryToken'] == pl){
         req.session['checkpointReached'] = true;
 
