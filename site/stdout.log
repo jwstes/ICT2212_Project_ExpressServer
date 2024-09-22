@@ -1,0 +1,74 @@
+[2024-09-22 10:01:45] [INFO] Drogon version 1.8.0 starting...
+[2024-09-22 10:01:45] [INFO] Loading configuration from config.json...
+[2024-09-22 10:01:45] [DEBUG] Initializing SSL context...
+[2024-09-22 10:01:45] [INFO] SSL enabled on port 443 (https://localhost:443)
+[2024-09-22 10:01:45] [DEBUG] Checking for existing SSL certificates...
+[2024-09-22 10:01:46] [INFO] Certificate and private key loaded successfully.
+[2024-09-22 10:01:46] [INFO] Setting up HTTP and HTTPS listeners...
+[2024-09-22 10:01:46] [DEBUG] Listening on 0.0.0.0:80 (HTTP)
+[2024-09-22 10:01:46] [DEBUG] Listening on 0.0.0.0:443 (HTTPS)
+[2024-09-22 10:01:46] [INFO] Drogon HTTP server started on port 80
+[2024-09-22 10:01:46] [INFO] Drogon HTTPS server started on port 443
+[2024-09-22 10:01:47] [DEBUG] Starting event loop...
+[2024-09-22 10:01:47] [INFO] Registering routes from controller files...
+[2024-09-22 10:01:47] [INFO] Route: GET / -> IndexController::index
+[2024-09-22 10:01:47] [INFO] Route: POST /login -> AuthController::login
+[2024-09-22 10:01:47] [INFO] Route: GET /zzon -> ZzonController::getZzonDirectory
+[2024-09-22 10:01:47] [DEBUG] Compiling ZzonController...
+[2024-09-22 10:01:48] [INFO] ZzonController compiled successfully.
+[2024-09-22 10:01:48] [DEBUG] Route handler registered for /zzon.
+[2024-09-22 10:01:48] [INFO] Processing static files in /static directory...
+[2024-09-22 10:01:48] [DEBUG] Static file: /static/js/app.js
+[2024-09-22 10:01:48] [DEBUG] Static file: /static/css/style.css
+[2024-09-22 10:01:48] [DEBUG] Static file: /static/images/logo.png
+[2024-09-22 10:01:49] [INFO] Static files loaded successfully.
+[2024-09-22 10:01:49] [INFO] Loading plugins from /plugins...
+[2024-09-22 10:01:49] [INFO] Plugin: CacheManager loaded successfully.
+[2024-09-22 10:01:49] [INFO] Plugin: SessionManager loaded successfully.
+[2024-09-22 10:01:49] [INFO] Plugin: ZzonDirectoryWatcher initializing...
+[2024-09-22 10:01:50] [DEBUG] Watching directory /zzon for changes...
+[2024-09-22 10:01:50] [INFO] ZzonDirectoryWatcher initialized.
+[2024-09-22 10:01:50] [INFO] Drogon server ready to accept connections.
+[2024-09-22 10:02:00] [INFO] Connection received from 192.168.1.5:54321 (HTTP)
+[2024-09-22 10:02:00] [DEBUG] Handling request: GET /index
+[2024-09-22 10:02:00] [INFO] GET /index returned 200 OK
+[2024-09-22 10:02:01] [INFO] Connection received from 192.168.1.5:54322 (HTTPS)
+[2024-09-22 10:02:01] [DEBUG] Handling request: GET /zzon
+[2024-09-22 10:02:01] [INFO] GET /zzon returned 200 OK
+[2024-09-22 10:02:10] [INFO] Connection received from 192.168.1.6:54323 (HTTPS)
+[2024-09-22 10:02:10] [DEBUG] Handling request: POST /login
+[2024-09-22 10:02:10] [INFO] POST /login returned 302 Redirect
+[2024-09-22 10:02:15] [INFO] Zzon directory updated: /zzon/data/newfile.json
+[2024-09-22 10:02:15] [DEBUG] Reloading Zzon directory...
+[2024-09-22 10:02:16] [INFO] Zzon directory reloaded successfully.
+[2024-09-22 10:02:30] [INFO] Connection received from 192.168.1.7:54324 (HTTP)
+[2024-09-22 10:02:30] [DEBUG] Handling request: GET /static/js/app.js
+[2024-09-22 10:02:30] [INFO] GET /static/js/app.js returned 304 Not Modified
+[2024-09-22 10:02:45] [INFO] Connection received from 192.168.1.8:54325 (HTTPS)
+[2024-09-22 10:02:45] [DEBUG] Handling request: GET /zzon
+[2024-09-22 10:02:45] [INFO] GET /zzon returned 200 OK
+[2024-09-22 10:03:00] [INFO] Connection received from 192.168.1.9:54326 (HTTP)
+[2024-09-22 10:03:00] [DEBUG] Handling request: GET /static/css/style.css
+[2024-09-22 10:03:00] [INFO] GET /static/css/style.css returned 304 Not Modified
+[2024-09-22 10:03:15] [INFO] Zzon directory updated: /zzon/data/anotherfile.json
+[2024-09-22 10:03:15] [DEBUG] Reloading Zzon directory...
+[2024-09-22 10:03:16] [INFO] Zzon directory reloaded successfully.
+[2024-09-22 10:03:30] [INFO] Connection received from 192.168.1.10:54327 (HTTPS)
+[2024-09-22 10:03:30] [DEBUG] Handling request: GET /zzon
+[2024-09-22 10:03:30] [INFO] GET /zzon returned 200 OK
+[2024-09-22 10:03:45] [INFO] Connection received from 192.168.1.11:54328 (HTTP)
+[2024-09-22 10:03:45] [DEBUG] Handling request: GET /index
+[2024-09-22 10:03:45] [INFO] GET /index returned 200 OK
+[2024-09-22 10:04:00] [INFO] Connection received from 192.168.1.12:54329 (HTTPS)
+[2024-09-22 10:04:00] [DEBUG] Handling request: GET /zzon
+[2024-09-22 10:04:00] [INFO] GET /zzon returned 200 OK
+[2024-09-22 10:04:15] [INFO] Zzon directory updated: /zzon/data/updatefile.txt
+[2024-09-22 10:04:15] [DEBUG] Reloading Zzon directory...
+[2024-09-22 10:04:16] [INFO] Zzon directory reloaded successfully.
+[2024-09-22 10:04:30] [INFO] Connection received from 192.168.1.13:54330 (HTTP)
+[2024-09-22 10:04:30] [DEBUG] Handling request: GET /static/images/logo.png
+[2024-09-22 10:04:30] [INFO] GET /static/images/logo.png returned 304 Not Modified
+[2024-09-22 10:04:45] [INFO] Connection received from 192.168.1.14:54331 (HTTPS)
+[2024-09-22 10:04:45] [DEBUG] Handling request: GET /zzon
+[2024-09-22 10:04:45] [INFO] GET /zzon returned 200 OK
+[2024-09-22 10:05:00] [INFO] Connection received from 192.168.1.15:54332 (HTTP)
