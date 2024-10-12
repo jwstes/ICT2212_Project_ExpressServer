@@ -67,6 +67,20 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+function checkSessionLocked(req, res, next) {
+    if (req.session.locked && req.session.lockedUntil > Date.now()) {
+        res.send("Session Exceeded Limit");
+    } else if (req.session.locked && req.session.lockedUntil <= Date.now()) {
+        req.session.locked = false;
+        req.session.loginAttempts = [];
+        next();
+    } else {
+        next();
+    }
+}
+
+app.use(checkSessionLocked);
+
 app.get('/', async (req, res) => {
     res.redirect('/login');
 })
@@ -86,6 +100,23 @@ app.get('/login', async (req, res) => {
 app.post('/login', async (req, res) => {
     var data = req.body;
     var headers = req.headers;
+
+    if (!req.session.loginAttempts) {
+        req.session.loginAttempts = [];
+    }
+
+    var thirtyMinutesAgo = Date.now() - 30 * 60 * 1000;
+    req.session.loginAttempts = req.session.loginAttempts.filter(attemptTime => attemptTime > thirtyMinutesAgo);
+
+    req.session.loginAttempts.push(Date.now());
+
+    if (req.session.loginAttempts.length >= 5) {
+        req.session.locked = true;
+        req.session.lockedUntil = Date.now() + 30 * 60 * 1000;
+        // req.session.lockedUntil = Date.now() + 10 * 1000;
+        res.redirect('/login');
+        return;
+    }
 
     if(headers['_sid']){
         if(headers['_sid'] == req.session['sessionID']){
@@ -113,7 +144,8 @@ app.post('/login', async (req, res) => {
     else{
         res.status(401).send({"status" : 401});
     }
-})
+});
+
 
 app.post('/getToken', async (req, res) => {
     var data = req.body;
